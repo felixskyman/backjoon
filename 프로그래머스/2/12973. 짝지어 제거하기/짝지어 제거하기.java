@@ -1,21 +1,12 @@
-import java.util.*;
-
 class Solution
 {
     public int solution(String s)
     {
-        int a = 0;
-        Character[] ter = new Character[s.length()];
+        int answer = -1;
 
-        for (int i = 0; i < s.length(); i++) {
+        // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+        System.out.println("Hello Java");
 
-            ter[a++] = s.charAt(i);
-
-            if (a >= 2 && ter[a - 1] == ter[a - 2]) {
-                a -= 2;
-            }
-        }
-
-        return a == 0 ? 1 : 0;
+        return answer;
     }
 }
