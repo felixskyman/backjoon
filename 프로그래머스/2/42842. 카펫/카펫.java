@@ -1,18 +1,12 @@
-class Solution {
-    public int[] solution(int brown, int yellow) {
-        int[] answer = new int[2];
-        for (int i = 1; i <= yellow; i++) {
-            if (yellow % i == 0) {
-                int width = i + 2;
-                int height = yellow / i + 2;
+	class Solution {
+	    public int[] solution(int brown, int yellow) {
+	        int a = (brown + 4) / 2;
+	        int b = yellow + 2 * a - 4;
 
-                if (width * height - yellow == brown) {
-                    answer[0] = Math.max(width, height);
-                    answer[1] = Math.min(width, height);
-                    return answer;
-                }
-            }
-        }
-        return answer;
-    }
-}
+	        int[] answer = {
+	            (int)((a + Math.sqrt(a * a - 4 * b)) / 2),
+	            (int)((a - Math.sqrt(a * a - 4 * b)) / 2)
+	        };
+	        return answer;
+	    }
+	}
