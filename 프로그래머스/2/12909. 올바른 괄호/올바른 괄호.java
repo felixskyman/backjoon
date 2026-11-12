@@ -6,7 +6,7 @@ class Solution {
         	if(s.charAt(i)=='(') {
         		a++;
         	}
-            if(s.charAt(i)==')') {
+            else if(s.charAt(i)==')') {
         		a--;
         	}
             if(a<0){
