@@ -5,8 +5,8 @@ class Solution {
         Queue<Integer> q=new LinkedList<>();
         ArrayList<Integer> al=new ArrayList<>();
         for(int i=0;i<speeds.length;i++) {
-        	double remain=(100-progresses[i])/(double)speeds[i];
-        	int date=(int)Math.ceil(remain);
+        	int remain = 100 - progresses[i];
+            int date = (remain + speeds[i] - 1) / speeds[i];
         	if(!q.isEmpty() && q.peek()<date) {
         		al.add(q.size());
         		q.clear();
