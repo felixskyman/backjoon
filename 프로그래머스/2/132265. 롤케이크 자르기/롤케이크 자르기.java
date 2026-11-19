@@ -1,32 +1,21 @@
-import java.util.*;
-
 class Solution {
     public int solution(int[] topping) {
         int answer = 0;
-
-        HashMap<Integer, Integer> topp = new HashMap<>();
-
-        for (int i = 0; i < topping.length; i++) {
-            topp.put(topping[i], topp.getOrDefault(topping[i], 0) + 1);
+        int[] left=new int[10001],right=new int[10001];
+        int rt=0,lt=0;
+        for(int i : topping) {
+        	right[i]++;
         }
-
-        HashMap<Integer, Integer> left = new HashMap<>();
-        HashMap<Integer, Integer> right = new HashMap<>(topp);
-
-        for (int j = 0; j < topping.length - 1; j++) {
-            left.put(topping[j], left.getOrDefault(topping[j], 0) + 1);
-
-            right.put(topping[j], right.get(topping[j]) - 1);
-
-            if (right.get(topping[j]) == 0) {
-                right.remove(topping[j]);
-            }
-
-            if (left.size() == right.size()) {
-                answer++;
-            }
+        for(int i : right) {
+        	rt+= i>0 ? 1:  0;
         }
-
+        for(int i : topping) {
+        	right[i]--;
+        	if(right[i]==0) rt--;
+        	if(left[i]==0) lt++;
+        	left[i]++;
+        	if(lt==rt) answer++;
+        }
         return answer;
     }
 }
