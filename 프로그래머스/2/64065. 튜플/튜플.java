@@ -1,43 +1,17 @@
 import java.util.*;
 
 class Solution {
-    public int[] solution(String str) {
-        str = str.substring(2, str.length() - 2);
-
-        String[] rows = str.split("\\},\\{");
-        int[][] arr = new int[rows.length][];
-
-        for (int i = 0; i < rows.length; i++) {
-            String[] nums = rows[i].split(",");
-            arr[i] = new int[nums.length];
-
-            for (int j = 0; j < nums.length; j++) {
-                arr[i][j] = Integer.parseInt(nums[j]);
-            }
+	public int[] solution(String str) {
+        HashSet<String> set=new HashSet<String>();
+        String[] arr=str.replaceAll("[{]", " ").replaceAll("[}]", " ").trim().split(" , ");
+        Arrays.sort(arr,(a,b)->{return a.length() - b.length();});
+        int[] answer=new int[arr.length];
+        int idx=0;
+        for(String s1 : arr) {
+        	for(String s2 : s1.split(",")) {
+        		if(set.add(s2)) answer[idx++]=Integer.parseInt(s2);
+        	}
         }
-
-        int[] answer = new int[arr.length];
-        int count = 0;
-
-        Arrays.sort(arr, (a, b) -> Integer.compare(a.length, b.length));
-
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
-                boolean exists = false;
-
-                for (int k = 0; k < count; k++) {
-                    if (answer[k] == arr[i][j]) {
-                        exists = true;
-                        break;
-                    }
-                }
-
-                if (!exists) {
-                    answer[count++] = arr[i][j];
-                }
-            }
-        }
-
         return answer;
     }
 }
